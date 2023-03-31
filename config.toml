@@ -1,3 +1,4 @@
 [alias]
 initcs="moab init csharp"
 initj="moab init java"
+cproj = "!cproj.sh \"$1\""
