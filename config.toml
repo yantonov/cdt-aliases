@@ -1,3 +1,5 @@
+executable="${CDT_HOME}/cdt"
+
 [alias]
 initcs="moab init csharp"
 initj="moab init java"
