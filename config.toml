@@ -1,6 +1,6 @@
 executable="${CDT_HOME}/cdt"
 
 [alias]
-initcs="moab init csharp"
-initj="moab init java"
+initwcs="moab init csharp"
+initw="moab init java"
 cproj = "!checkout-projects.sh \"$1\""
