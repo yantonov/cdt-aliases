@@ -1,8 +1,9 @@
 executable="${CDT_HOME}/cdt"
 
 [alias]
-initwcs="moab init csharp"
-initw="moab init java"
+initcs="moab init csharp"
+initj="moab init java"
+initgo="moab init java sdk/sdk-golang"
 cproj = "!checkout-projects.sh \"$1\""
 co="moab checkout"
 ide="moab ide"
