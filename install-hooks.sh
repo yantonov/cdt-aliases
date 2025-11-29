@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 set -o errexit -o nounset
 
-# Check if current directory is a Git repo by looking for .git
-if [ ! -d .git ]; then
-    echo "Error: This is not a Git repository."
+# Check if we're inside a git repository
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    # echo "Inside a Git repository."
+    # git status
+    ROOT_DIR=$(git rev-parse --show-toplevel)
+    # echo "Git repo detected. Moving to root: $ROOT_DIR"
+    cd "$ROOT_DIR" || exit 1
+else
+    echo "Not inside a Git repository."
     exit 1
 fi
 
