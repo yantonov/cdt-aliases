@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -o errexit -o nounset
 
-PROJECTS="$1"
+echo "all args='$@'"
 
-cdt moab checkout "${PROJECTS}"
+cdt moab checkout "$@"
 
 gw exec --threads=1 --cmd="${SHELL} install-hooks.sh"
