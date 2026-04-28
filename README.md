@@ -1,4 +1,4 @@
-A set of aliases for [cdt](https://github.com/criteo/command-launcher) tool
+A set of [aliases](https://github.com/yantonov/cdt-aliases/blob/master/config.toml) for [cdt](https://github.com/criteo/command-launcher) tool
 
 ### Usage
 1. add this repository to PATH.
