@@ -11,7 +11,7 @@ script that downloads latest [alias](http://github.com/yantonov/alias) distribut
 
 Alternatively, you can:  
 a) build [alias](http://github.com/yantonov/alias) manually (or use the available distribution)  
-b) name it as uv and put it into this repository (binary file has already ignored inside this repository)  
+b) name it as `cdt` and put it into this repository (binary file has already ignored inside this repository)  
 
 ### Optional
 Also you can install commit [hook](https://github.com/yantonov/ticket-commit-msg) that will include ticket number to the commit message automatically
