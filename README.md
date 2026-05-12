@@ -1,7 +1,7 @@
 # Intro
 A set of [aliases](https://github.com/yantonov/cdt-aliases/blob/master/config.toml) for [cdt](https://github.com/criteo/command-launcher) tool
 
-# Usage
+# Installation
 1. clone and add this repository to the front of PATH
 2. use 
 ```bash
