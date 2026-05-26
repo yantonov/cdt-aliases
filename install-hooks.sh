@@ -14,12 +14,16 @@ else
 fi
 
 # https://stackoverflow.com/questions/592620/how-can-i-check-if-a-program-exists-from-a-bash-script
-if command -v install-ticket-commit-msg-hook.sh &> /dev/null
+
+# if command -v install-ticket-commit-msg-hook.sh &> /dev/null
+if command -v krok &> /dev/null   
 then
-    install-ticket-commit-msg-hook.sh --force
+    # -install-ticket-commit-msg-hook.sh --force
+    krok add commit-msg ticket-commit-msg
 else
     echo 'ticket commit message hook is missing'
-    echo 'check https://github.com/yantonov/ticket-commit-msg to install'
+    echo 'check https://github.com/yantonov/krok to install'
+    exit 1
 fi
 
 # https://stackoverflow.com/questions/592620/how-can-i-check-if-a-program-exists-from-a-bash-script
@@ -29,4 +33,5 @@ then
 else
     echo 'ticket commit message tool is missing'
     echo 'check https://github.com/yantonov/ticket-commit-msg to install'
+    exit 1
 fi
