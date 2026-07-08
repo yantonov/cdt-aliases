@@ -3,4 +3,4 @@ set -o errexit -o nounset
 
 cdt moab checkout "$@"
 
-gw exec --threads=1 --cmd="install-hooks.sh"
+gw exec --threads=1 --cmd="${SHELL} -c install-hooks.sh"
