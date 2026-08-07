@@ -35,3 +35,5 @@ else
     echo 'check https://github.com/yantonov/ticket-commit-msg to install'
     exit 1
 fi
+
+echo "hooks are successfully installed"
