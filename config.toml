@@ -11,3 +11,8 @@ jira="!add-jira-prefix.sh"
 ide="moab ide"
 rmoab="moab refresh"
 st="moab status"
+
+[alias.get]
+# example cdt get cs team/proj
+cs="!cdt-get-cs-proj.sh \"$@\""
+java="!cdt-get-java-proj.sh \"$@\""
