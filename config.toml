@@ -14,5 +14,9 @@ st="moab status"
 
 [alias.get]
 # example cdt get cs team/proj
-cs="!cdt-get-cs-proj.sh \"$@\""
-java="!cdt-get-java-proj.sh \"$@\""
+cs="!cdt-get-cs-workspace.sh \"$@\""
+java="!cdt-get-java-workspace.sh \"$@\""
+# you can add shortcuts for a specific projects, through override.toml
+# example:
+# [alias.get]
+# main-project="!cdt get cs team/super-duper-project
