@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -o errexit -o nounset
+#!/bin/sh
+set -eu
 
 cdt moab checkout "$@"
 
