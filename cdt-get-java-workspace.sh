@@ -7,23 +7,20 @@ if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     exit 1
 fi
 
-case "$1" in
-    *" "*)
-        if [ "$#" -ne 2 ] || [ -z "$2" ]; then
+if [ "$#" -eq 2 ] && [ -n "$2" ]; then
+    PROJECT_NAME="$2"
+else
+    case "$1" in
+        *" "*)
             echo "Error: first argument contains a space; second argument must provide the project name explicitly" >&2
             exit 1
-        fi
-        PROJECT_NAME="$2"
-        ;;
-    *)
-        if [ "$#" -ne 1 ]; then
-            echo "Error: exactly one argument is required when the project argument has no space" >&2
-            exit 1
-        fi
-        # last "/"-separated token of $1, e.g. "team/proj" -> "proj"
-        PROJECT_NAME="${1##*/}"
-        ;;
-esac
+            ;;
+        *)
+            # last "/"-separated token of $1, e.g. "team/proj" -> "proj"
+            PROJECT_NAME="${1##*/}"
+            ;;
+    esac
+fi
 
 if [ -z "${WORKSPACE_HOME:-}" ]; then
     echo "Error: WORKSPACE_HOME is not set" >&2
@@ -38,4 +35,14 @@ cd "${TARGET}"
 
 cdt initj
 
-cdt cproj "$1"
+case "$1" in
+    *" "*)
+        set -f
+        set -- $1
+        set +f
+        cdt cproj "$@"
+        ;;
+    *)
+        cdt cproj "$1"
+        ;;
+esac
