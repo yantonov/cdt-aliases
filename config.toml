@@ -12,11 +12,12 @@ ide="moab ide"
 rmoab="moab refresh"
 st="moab status"
 
-[alias.get]
-# example cdt get cs team/proj
+# workspace related
+[alias.ws]
+# example cdt ws cs team/proj
 cs="!cdt-get-cs-workspace.sh \"$@\""
 java="!cdt-get-java-workspace.sh \"$@\""
 # you can add shortcuts for a specific projects, through override.toml
 # example:
 # [alias.get]
-# main-project="!cdt get cs team/super-duper-project
+# main-project="!cdt ws cs team/super-duper-project
