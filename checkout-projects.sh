@@ -3,4 +3,4 @@ set -eu
 
 cdt moab checkout "$@"
 
-gw exec --threads=1 --cmd="${SHELL} -c install-hooks.sh"
+cdt exec ${SHELL} -- -c install-hooks.sh
