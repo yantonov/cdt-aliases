@@ -1,0 +1,67 @@
+# bash completion for cdt (https://github.com/yantonov/alias wrapper + Criteo command-launcher)
+#
+# Adds completion for the wrapper's custom aliases defined in config.toml /
+# override.toml (as reported by `cdt --aliases`) on top of whatever native
+# cobra completion cdt already provides for its real subcommands.
+#
+# Alias groups are handled at any depth: the `--aliases` tree is flattened into
+# space separated paths (`ws`, `ws cs`, `shell bash show`, ...) and the words
+# already typed on the command line are used as a prefix filter.
+
+# flatten the `cdt --aliases` tree into one path per line
+# two spaces of indentation = one level of nesting
+_cdt_alias_paths() {
+    cdt --aliases 2>/dev/null | awk '
+        /^[[:space:]]*$/ { next }
+        {
+            match($0, /^ */)
+            depth = int(RLENGTH / 2)
+            name = substr($0, RLENGTH + 1)
+            if (name ~ /:$/) {
+                sub(/:$/, "", name)       # group
+            } else {
+                sub(/[[:space:]]*=.*/, "", name)
+            }
+            stack[depth] = name
+            path = name
+            for (i = depth - 1; i >= 0; i--) path = stack[i] " " path
+            print path
+        }
+    '
+}
+
+# next word candidates for the already typed prefix (empty prefix = top level)
+_cdt_alias_candidates() {
+    _cdt_alias_paths | awk -v prefix="$1" '
+        {
+            if (prefix != "" && index($0, prefix) != 1) next
+            rest = substr($0, length(prefix) + 1)
+            if (rest != "" && index(rest, " ") == 0) print rest
+        }
+    '
+}
+
+_cdt_completion() {
+    local cur prefix candidates i
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=()
+
+    prefix=""
+    for (( i = 1; i < COMP_CWORD; i++ )); do
+        prefix+="${COMP_WORDS[i]} "
+    done
+
+    candidates="$(_cdt_alias_candidates "$prefix")"
+    if [[ $COMP_CWORD -eq 1 ]]; then
+        candidates="--aliases --version --help ${candidates}"
+    fi
+
+    declare -F __start_cdt >/dev/null 2>&1 && __start_cdt
+    COMPREPLY+=( $(compgen -W "${candidates}" -- "$cur") )
+    if [ ${#COMPREPLY[@]} -gt 1 ]; then
+        COMPREPLY=( $(printf '%s\n' "${COMPREPLY[@]}" | sort -u) )
+    fi
+    return 0
+}
+
+complete -o default -F _cdt_completion cdt
