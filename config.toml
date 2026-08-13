@@ -14,13 +14,6 @@ ide="moab ide"
 rmoab="moab refresh"
 st="moab status"
 
-# shell integration
-# completion for the current shell (detected through the SHELL variable)
-# example cdt shell show
-[alias.shell]
-show="!cdt-completion.sh show"
-install="!cdt-completion.sh install"
-
 # workspace related
 [alias.ws]
 # example cdt ws cs team/proj
@@ -31,3 +24,10 @@ java="!cdt-get-java-workspace.sh \"$@\""
 # example:
 # [alias.get]
 # main-project="!cdt ws cs team/super-duper-project
+
+# shell integration
+# completion for the current shell (detected through the SHELL variable)
+# example cdt shell show
+[alias.shell]
+show="!cdt-completion.sh show"
+install="!cdt-completion.sh install"
