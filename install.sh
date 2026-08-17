@@ -12,4 +12,4 @@ command -v curl > /dev/null 2>&1 || {
 
 APP_NAME="cdt"
 
-curl -fsSL "https://raw.githubusercontent.com/yantonov/alias/master/bin/download.sh" | sh -s -- "${APP_NAME}"
+curl -fsSL "https://raw.githubusercontent.com/yantonov/alias/master/bin/install/download.sh" | sh -s -- "${APP_NAME}"
