@@ -16,8 +16,8 @@ else
             exit 1
             ;;
         *)
-            # last "/"-separated token of $1, e.g. "team/proj" -> "proj"
-            PROJECT_NAME="${1##*/}"
+            # last "/"- or ":"-separated token of $1, e.g. "team/proj" -> "proj", "foo:bar" -> "bar"
+            PROJECT_NAME="${1##*[/:]}"
             ;;
     esac
 fi
